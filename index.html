@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Phone contact</title>
+
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body class="container">
+    <body ng-controller="MyCtr">
+   <h1 class="headi">Phone book</h1>
+            <button class="creat btn btn-primary" class="btn btn-primary" ng-click="frmToggle()">Add Contact</button>
+            <br>
+            <br>
+            
+        <form class="form-horizontal" id="contactForm" ng-submit="add()" hidden>
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">PhoneNumber</label>
+                    <div class="col-sm-10">
+                            <input type="number" ng-model="PhoneNumber" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                                <input type="email" ng-model="Email" class="form-control">
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" value="submit" class="btn btn-primary">Save contact</button>
+                    </div>
+                </div>
+            </form>
+            
+        <table class="table table-hover" >
+             <thead>
+                  <tr>
+                      
+                      <th>Name</th>
+                      <th>Contact Number</th>
+                      <th>email Id</th>
+                      
+                      
+                  </tr>  
+                </thead>
+                <tbody ng-repeat="contact in listOfContacts">
+                    <tr>
+                        
+                        <td>{{contact.Name}}</td>
+                        <td>{{contact.PhoneNumber}}</td>
+                        <td>{{contact.Email}}</td>
+                        <td>
+                                <div class="btn-group">
+                                    <button  ng-click="selectEdit(contact.id)" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button>
+                                    <button ng-click="delete(contact.id)"><span  class="glyphicon glyphicon-trash" ></span></button>
+                                </div>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            
+
+          
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Contacts</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                        <form class="form-horizontal" id="blogForm">
+                                <div class="form-group">
+                                    <label for="title" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" ng-model="Name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-2 control-label">phone number</label>
+                                    <div class="col-sm-10">
+                                        <input type="text"  class="form-control" ng-model="PhoneNumber" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label for="description" class="col-sm-2 control-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" ng-model="Email" >
+                                        </div>
+                                    </div>
+                            </form>
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="edit()">Save changes</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+    </body>
+
+
+
+</html
